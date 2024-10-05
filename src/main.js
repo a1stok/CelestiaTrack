@@ -1,5 +1,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'; // Import OrbitControls
+
 
 
 
@@ -63,6 +65,10 @@ loader.load(
 );
 
 
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+controls.dampingFactor = 0.25;
+controls.screenSpacePanning = false;
 
 
 renderer.setSize( window.innerWidth, window.innerHeight );
@@ -78,14 +84,15 @@ renderer.setAnimationLoop( animate );
 
 
 function animate() {
-    requestAnimationFrame(animate);
+    // requestAnimationFrame(animate);
 
     // Update the mixer if it exists
-    if (mixer) {
-        mixer.update(0.01); // Update the animation
-    }
+    // if (mixer) {
+    //     mixer.update(0.001); // Update the animation
+    // }
 
     renderer.render(scene, camera);
+	console.log('asdas')
 }
 
 animate();
