@@ -69,7 +69,7 @@ loader.load(
 
 loader.load(
 	// resource URL
-	'objects/planets/venus/Venus_1_12103.glb',
+	'objects/sun/the_sun.glb',
 	// called when the resource is loaded
 	function ( gltf ) {
 		// mixer = new THREE.AnimationMixer( gltf.scene );
