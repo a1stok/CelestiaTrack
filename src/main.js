@@ -42,6 +42,7 @@ loader.load(
 		const model = gltf.scene;
 		scene.add( model );
 		// scene.add( gltf.scene );
+		console.log(model)
 		mixer = new THREE.AnimationMixer(model);
 
 		// Check for animations in the loaded model
@@ -64,6 +65,45 @@ loader.load(
 	}
 );
 
+
+
+loader.load(
+	// resource URL
+	'objects/planets/venus/Venus_1_12103.glb',
+	// called when the resource is loaded
+	function ( gltf ) {
+		// mixer = new THREE.AnimationMixer( gltf.scene );
+		// var action = mixer.clipAction( gltf.animations[ 0 ] );
+		// action.play();
+		
+		const model1 = gltf.scene;
+		model1.scale.set(1, 1, 1); // Adjust as necessary
+		model1.position.set(3, 0, 0); // Position it relative to the first model
+		scene.add( model1 );
+
+		mixer = new THREE.AnimationMixer(model1);
+		console.log(model1)
+
+		// Check for animations in the loaded model
+		gltf.animations.forEach((clip) => {
+			mixer.clipAction(clip).play(); // Play the animation
+		});
+		// scene.add( gltf.scene );
+
+	},
+	// called while loading is progressing
+	function ( xhr ) {
+
+		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+	},
+	// called when loading has errors
+	function ( error ) {
+
+		console.log(error,"wtf	");
+
+	}
+);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
