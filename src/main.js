@@ -13,8 +13,10 @@ const loader = new GLTFLoader();
 var light = new THREE.AmbientLight(0xffffff);
 scene.add(light);
 
-camera.position.set(0, 5, 10);
-camera.lookAt(scene.position); //add this line
+camera.position.set(0, 1, 5); // Adjust these values as needed
+camera.lookAt(0, 1, 0); // Make sure the camera is looking at the center of your model
+
+let mixer;
 
 loader.load(
 	// resource URL
@@ -24,15 +26,15 @@ loader.load(
 		// mixer = new THREE.AnimationMixer( gltf.scene );
 		// var action = mixer.clipAction( gltf.animations[ 0 ] );
 		// action.play();
-	
-		scene.add( gltf.scene );
+		const model = gltf.scene;
+		scene.add( model );
 		// scene.add( gltf.scene );
+		mixer = new THREE.AnimationMixer(model);
 
-		gltf.animations; // Array<THREE.AnimationClip>
-		gltf.scene; // THREE.Group
-		gltf.scenes; // Array<THREE.Group>
-		gltf.cameras; // Array<THREE.Camera>
-		gltf.asset; // Object
+		// Check for animations in the loaded model
+		gltf.animations.forEach((clip) => {
+			mixer.clipAction(clip).play(); // Play the animation
+		});
 
 	},
 	// called while loading is progressing
@@ -49,23 +51,6 @@ loader.load(
 	}
 );
 
-// loader.load( 'objects/planets/mercury/Mercury_1_4878.glb', function ( gltf ) {
-// loader.load( 'objects/sun/the_sun/scene.gltf', function ( gltf ) {
-
-// 	scene.add( gltf.scene );
-//     console.log('ok')
-//     gltf.animations; // Array<THREE.AnimationClip>
-// 		gltf.scene; // THREE.Group
-// 		gltf.scenes; // Array<THREE.Group>
-// 		gltf.cameras; // Array<THREE.Camera>
-// 		gltf.asset; // Object
-
-// }, undefined, function ( error ) {
-
-// 	console.error( error );
-
-// } );
-
 
 
 
@@ -78,22 +63,18 @@ renderer.setAnimationLoop( animate );
 // scene.add( cube );
 
 
-renderer.render( scene, camera );
-
-
-
-// animate()
-
+// renderer.render( scene, camera );
 
 
 function animate() {
-    requestAnimationFrame(animate)
-	// cube.rotation.x += 0.01;
-	// cube.rotation.y += 0.01;
+    requestAnimationFrame(animate);
 
-	renderer.render( scene, camera );
-	console.log('asdas')
+    // Update the mixer if it exists
+    if (mixer) {
+        mixer.update(0.01); // Update the animation
+    }
 
+    renderer.render(scene, camera);
 }
 
-// animate()
+animate();
