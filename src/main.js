@@ -16,6 +16,17 @@ scene.add(light);
 camera.position.set(0, 1, 5); // Adjust these values as needed
 camera.lookAt(0, 1, 0); // Make sure the camera is looking at the center of your model
 
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Soft light
+scene.add(ambientLight);
+
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+directionalLight.position.set(5, 10, 7.5).normalize();
+scene.add(directionalLight);
+
+// gltf.scene.scale.set(1, 1, 1); // Scale values can be adjusted
+
+
+
 let mixer;
 
 loader.load(
