@@ -34,7 +34,8 @@ function getPlanet({
   children = [],
   distance = 0,
   img = "",
-  size = 1,
+  size = 1
+  ,rate = 0
 }) {
   const points = [];
   const a = semiMajorAxis; // Semi-major axis
@@ -83,7 +84,7 @@ function getPlanet({
     orbitGroup.add(child);
   });
 
-  const rate = 100 - 1.0;
+  
   orbitGroup.userData.update = (t) => {
     // orbitGroup.rotation.y = t * rate;
 

@@ -77,7 +77,7 @@ const AU = 5
 function addOrbitsToScene() {
   // Mercury's orbit parameters
   const mercuryOrbitPoints = createOrbitEllipse(
-      8.32145129, // Semi-major axis in meters (1 AU)
+    0.38709927*AU, // Semi-major axis in meters (1 AU)
       0.20563593,            // Eccentricity
       7.00497902 * (Math.PI / 180), // Inclination in radians
       0.0 * (Math.PI / 180),  // Longitude of ascending node in radians
@@ -89,7 +89,7 @@ function addOrbitsToScene() {
 
   // Venus's orbit parameters
   const venusOrbitPoints = createOrbitEllipse(
-      15.5495061, // Semi-major axis in meters (1 AU)
+    0.72333566*5, // Semi-major axis in meters (1 AU)
       0.00677672,            // Eccentricity
       3.39467605 * (Math.PI / 180), // Inclination in radians
       0.0 * (Math.PI / 180),  // Longitude of ascending node in radians
@@ -101,7 +101,7 @@ function addOrbitsToScene() {
 
   // Earth's orbit parameters
   const earthOrbitPoints = createOrbitEllipse(
-      21.497, // Semi-major axis in meters (1 AU)
+    1.00000261*5, // Semi-major axis in meters (1 AU)
       0.01671123,            // Eccentricity
       -0.00001531 * (Math.PI / 180), // Inclination in radians
       0.0 * (Math.PI / 180),  // Longitude of ascending node in radians
@@ -111,17 +111,19 @@ function addOrbitsToScene() {
 
     // mars's orbit parameters
     const marsOrbitPoints = createOrbitEllipse(
-      21.497 * AU, // Semi-major axis in meters (1 AU)
-      0.01671123,            // Eccentricity
-      -0.00001531 * (Math.PI / 180), // Inclination in radians
-      0.0 * (Math.PI / 180),  // Longitude of ascending node in radians
-      102.93768193 * (Math.PI / 180), // Argument of periapsis in radians
-      100                     // Number of points for smooth orbit
+      1.52371034 *5, // Semi-major axis in meters (1 AU)
+      0.09339410,            // Eccentricity
+      1.84969142 * (Math.PI / 180), // Inclination in radians
+      -4.55343205 * (Math.PI / 180),  // Longitude of ascending node in radians
+      -23.94362959  * (Math.PI / 180), // Argument of periapsis in radians
+      49.55953891                     // Number of points for smooth orbit
   );
+  const marsOrbit = createOrbitLine(marsOrbitPoints);
+  scene.add(marsOrbit);
 
     // jupiter's orbit parameters
     const jupiterOrbitPoints = createOrbitEllipse(
-      21.497 * AU, // Semi-major axis in meters (1 AU)
+      5.20288700 * AU, // Semi-major axis in meters (1 AU)
       0.01671123,            // Eccentricity
       -0.00001531 * (Math.PI / 180), // Inclination in radians
       0.0 * (Math.PI / 180),  // Longitude of ascending node in radians
@@ -131,7 +133,7 @@ function addOrbitsToScene() {
 
     // saturn's orbit parameters
     const saturnOrbitPoints = createOrbitEllipse(
-      21.497 * AU, // Semi-major axis in meters (1 AU)
+      9.53667594 * AU, // Semi-major axis in meters (1 AU)
       0.01671123,            // Eccentricity
       -0.00001531 * (Math.PI / 180), // Inclination in radians
       0.0 * (Math.PI / 180),  // Longitude of ascending node in radians
@@ -141,7 +143,7 @@ function addOrbitsToScene() {
 
     // uranus's orbit parameters
     const uranusOrbitPoints = createOrbitEllipse(
-      21.497 * AU, // Semi-major axis in meters (1 AU)
+      19.18916464  * AU, // Semi-major axis in meters (1 AU)
       0.01671123,            // Eccentricity
       -0.00001531 * (Math.PI / 180), // Inclination in radians
       0.0 * (Math.PI / 180),  // Longitude of ascending node in radians
@@ -151,7 +153,7 @@ function addOrbitsToScene() {
 
     // neptune's orbit parameters
     const neptuneOrbitPoints = createOrbitEllipse(
-      21.497 * AU, // Semi-major axis in meters (1 AU)
+      30.06992276 * AU, // Semi-major axis in meters (1 AU)
       0.01671123,            // Eccentricity
       -0.00001531 * (Math.PI / 180), // Inclination in radians
       0.0 * (Math.PI / 180),  // Longitude of ascending node in radians
@@ -197,45 +199,117 @@ addOrbitsToScene();
   solarSystem.add(sun);
 
   const mercury = getPlanet({
-    semiMajorAxis: 8.32145129, // Semi-major axis in meters (1 AU)
+    semiMajorAxis: 0.38709927      *AU, // Semi-major axis in meters (1 AU)
     eccentricity: 0.20563593, // Eccentricity
     inclination: 7.00497902 * (Math.PI / 180), // Inclination in radians
     longitudeOfAscendingNode: 0.0 * (Math.PI / 180), // Longitude of ascending node in radians
     argumentOfPeriapsis: 77.45779628 * (Math.PI / 180), // Argument of periapsis in radians
     children: [], // Number of points for smooth orbit
-    size: 1.1,
+    size: 0.1,
     distance: 6,
     img: "mercury",
+    rate: 40,
   });
   solarSystem.add(mercury);
 
 
   const venus = getPlanet({
-    semiMajorAxis: 15.5495061, // Semi-major axis in meters (1 AU)
+    semiMajorAxis: 0.72333566      *5, // Semi-major axis in meters (1 AU)
     eccentricity: 0.00677672,            // Eccentricity
     inclination: 3.39467605 * (Math.PI / 180), // Inclination in radians
     longitudeOfAscendingNode: 0.0 * (Math.PI / 180), // Longitude of ascending node in radians
     argumentOfPeriapsis: 131.60246718 * (Math.PI / 180), // Argument of periapsis in radians
     children: [], // Number of points for smooth orbit
-    size: 2.1,
+    size: 0.1,
     distance: 6,
     img: "venus",
+    rate: 50,
   });
   solarSystem.add(venus);
 
   const earth = getPlanet({
-    semiMajorAxis: 21.497, // Semi-major axis in meters (1 AU)
+    semiMajorAxis: 1.00000261*5, // Semi-major axis in meters (1 AU)
     eccentricity: 0.01671123,            // Eccentricity
     inclination: -0.00001531 * (Math.PI / 180), // Inclination in radians
     longitudeOfAscendingNode: 0.0 * (Math.PI / 180), // Longitude of ascending node in radians
     argumentOfPeriapsis: 100 * (Math.PI / 180), // Argument of periapsis in radians
     children: [], // Number of points for smooth orbit
-    size: 2.1,
+    size: 0.1,
     distance: 6,
-    img: "earth",
+    img: "earth ",
+    rate: 100,
   });
   solarSystem.add(earth);
 
+  const mars = getPlanet({
+    semiMajorAxis: 1.52371034  *5, // Semi-major axis in meters (1 AU)
+    eccentricity: 0.09339410,            // Eccentricity
+    inclination: 1.84969142  * (Math.PI / 180), // Inclination in radians
+    longitudeOfAscendingNode: 0.0 * (Math.PI / 180), // Longitude of ascending node in radians
+    argumentOfPeriapsis: 100 * (Math.PI / 180), // Argument of periapsis in radians
+    children: [], // Number of points for smooth orbit
+    size: 0.1,
+    distance: 6,
+    img: "mars",
+    rate: 100,
+  });
+  solarSystem.add(mars);
+
+  const jupiter = getPlanet({
+    semiMajorAxis: 5.20288700    *5, // Semi-major axis in meters (1 AU)
+    eccentricity: 0.01671123,            // Eccentricity
+    inclination: -0.00001531 * (Math.PI / 180), // Inclination in radians
+    longitudeOfAscendingNode: 0.0 * (Math.PI / 180), // Longitude of ascending node in radians
+    argumentOfPeriapsis: 100 * (Math.PI / 180), // Argument of periapsis in radians
+    children: [], // Number of points for smooth orbit
+    size: 0.1,
+    distance: 6,
+    img: "jupiter",
+    rate: 100,
+  });
+  solarSystem.add(jupiter);
+
+  const saturn = getPlanet({
+    semiMajorAxis: 9.53667594   *AU, // Semi-major axis in meters (1 AU)
+    eccentricity: 0.01671123,            // Eccentricity
+    inclination: -0.00001531 * (Math.PI / 180), // Inclination in radians
+    longitudeOfAscendingNode: 0.0 * (Math.PI / 180), // Longitude of ascending node in radians
+    argumentOfPeriapsis: 100 * (Math.PI / 180), // Argument of periapsis in radians
+    children: [], // Number of points for smooth orbit
+    size: 1.1,
+    distance: 6,
+    img: "saturn",
+    rate: 100,
+  });
+  solarSystem.add(saturn);
+
+  const uranus = getPlanet({
+    semiMajorAxis: 19.18916464   *AU, // Semi-major axis in meters (1 AU)
+    eccentricity: 0.01671123,            // Eccentricity
+    inclination: -0.00001531 * (Math.PI / 180), // Inclination in radians
+    longitudeOfAscendingNode: 0.0 * (Math.PI / 180), // Longitude of ascending node in radians
+    argumentOfPeriapsis: 100 * (Math.PI / 180), // Argument of periapsis in radians
+    children: [], // Number of points for smooth orbit
+    size: 1.1,
+    distance: 6,
+    img: "uranus",
+    rate: 100,
+  });
+  solarSystem.add(uranus);
+
+  const neptune = getPlanet({
+    semiMajorAxis: 30.06992276   *AU, // Semi-major axis in meters (1 AU)
+    eccentricity: 0.01671123,            // Eccentricity
+    inclination: -0.00001531 * (Math.PI / 180), // Inclination in radians
+    longitudeOfAscendingNode: 0.0 * (Math.PI / 180), // Longitude of ascending node in radians
+    argumentOfPeriapsis: 100 * (Math.PI / 180), // Argument of periapsis in radians
+    children: [], // Number of points for smooth orbit
+    size: 1.1,
+    distance: 6,
+    img: "neptune",
+    rate: 100,
+  });
+  solarSystem.add(neptune);
   
 
   // const venus = getPlanet({ size: 1.2, distance: 70, img: 'venus', planetName :'venus' });
