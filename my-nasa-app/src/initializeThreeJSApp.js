@@ -111,7 +111,7 @@ function addOrbitsToScene() {
 
     // mars's orbit parameters
     const marsOrbitPoints = createOrbitEllipse(
-      1.52371034 *5, // Semi-major axis in meters (1 AU)
+      1.52371034 *AU, // Semi-major axis in meters (1 AU)
       0.09339410,            // Eccentricity
       1.84969142 * (Math.PI / 180), // Inclination in radians
       -4.55343205 * (Math.PI / 180),  // Longitude of ascending node in radians
@@ -124,43 +124,49 @@ function addOrbitsToScene() {
     // jupiter's orbit parameters
     const jupiterOrbitPoints = createOrbitEllipse(
       5.20288700 * AU, // Semi-major axis in meters (1 AU)
-      0.01671123,            // Eccentricity
-      -0.00001531 * (Math.PI / 180), // Inclination in radians
+      0.04838624   ,            // Eccentricity
+      1.30439695  * (Math.PI / 180), // Inclination in radians
       0.0 * (Math.PI / 180),  // Longitude of ascending node in radians
-      102.93768193 * (Math.PI / 180), // Argument of periapsis in radians
-      100                     // Number of points for smooth orbit
+      14.72847983   * (Math.PI / 180), // Argument of periapsis in radians
+      100.47390909                     // Number of points for smooth orbit
   );
+  const jupiterOrbit = createOrbitLine(jupiterOrbitPoints);
+  scene.add(jupiterOrbit);
 
     // saturn's orbit parameters
     const saturnOrbitPoints = createOrbitEllipse(
       9.53667594 * AU, // Semi-major axis in meters (1 AU)
-      0.01671123,            // Eccentricity
-      -0.00001531 * (Math.PI / 180), // Inclination in radians
+      0.05386179,            // Eccentricity
+      2.48599187  * (Math.PI / 180), // Inclination in radians
       0.0 * (Math.PI / 180),  // Longitude of ascending node in radians
-      102.93768193 * (Math.PI / 180), // Argument of periapsis in radians
-      100                     // Number of points for smooth orbit
+      92.59887831  * (Math.PI / 180), // Argument of periapsis in radians
+      113.66242448                    // Number of points for smooth orbit
   );
+  const saturnOrbit = createOrbitLine(saturnOrbitPoints);
+  scene.add(saturnOrbit);
 
     // uranus's orbit parameters
     const uranusOrbitPoints = createOrbitEllipse(
       19.18916464  * AU, // Semi-major axis in meters (1 AU)
-      0.01671123,            // Eccentricity
-      -0.00001531 * (Math.PI / 180), // Inclination in radians
+      0.04725744 ,            // Eccentricity
+      0.77263783       * (Math.PI / 180), // Inclination in radians
       0.0 * (Math.PI / 180),  // Longitude of ascending node in radians
-      102.93768193 * (Math.PI / 180), // Argument of periapsis in radians
-      100                     // Number of points for smooth orbit
+      170.95427630  * (Math.PI / 180), // Argument of periapsis in radians
+      74.01692503            // Number of points for smooth orbit
   );
-
+  const uranusOrbit = createOrbitLine(uranusOrbitPoints);
+  scene.add(uranusOrbit);
     // neptune's orbit parameters
     const neptuneOrbitPoints = createOrbitEllipse(
       30.06992276 * AU, // Semi-major axis in meters (1 AU)
-      0.01671123,            // Eccentricity
-      -0.00001531 * (Math.PI / 180), // Inclination in radians
+      0.00859048,            // Eccentricity
+      1.77004347    * (Math.PI / 180), // Inclination in radians
       0.0 * (Math.PI / 180),  // Longitude of ascending node in radians
-      102.93768193 * (Math.PI / 180), // Argument of periapsis in radians
-      100                     // Number of points for smooth orbit
+      44.96476227 * (Math.PI / 180), // Argument of periapsis in radians
+      131.78422574                 // Number of points for smooth orbit
   );
-
+  const neptuneOrbit = createOrbitLine(neptuneOrbitPoints);
+  scene.add(neptuneOrbit);
 
 
   const earthOrbit = createOrbitLine(earthOrbitPoints);
