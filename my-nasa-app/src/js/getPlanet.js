@@ -32,8 +32,8 @@ function getPlanet({ children = [], distance = 0, img = '', size = 1 }) {
     const texturePath = textureMap[img];
 
     // const path = `./src/images/textures/${img}`;
-    const path = {img}
-    console.log(path)
+    // const path = {img}
+    // console.log(path)
     
     const map = texLoader.load(texturePath, () =>{ console.log('loaded properly')  }, undefined, (error)=>{console.error('error loading')});
     const planetMat = new THREE.MeshStandardMaterial({
