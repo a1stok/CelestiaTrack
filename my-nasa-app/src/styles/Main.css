@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400&display=swap');
+
+body {
+    font-family: 'Noto Serif', serif; /* Set the font family for the entire body */
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 .main {
     padding: 20px;
     background-color: #000000;
@@ -5,22 +13,31 @@
     text-align: center;
 }
 
-body {
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-
+/* Solar System Section */
 .solar-system-placeholder {
     height: 600px; /* Increased to allow the Three.js canvas more space */
     width: 100%;
     margin-bottom: 40px;
-    background-color: #000000; /* Solid black background for the space effect */
+    background-color: #1a1a1a; /* Changed to a darker shade */
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid #333;
-    position: relative;
+    position: relative; /* Position relative to the placeholder */
     overflow: hidden;
+}
+
+.solar-system-placeholder::before {
+    content: "Solar System"; /* Change this to your desired text */
+    font-size: 2rem; /* Increased font size */
+    color: #ffffff;
+    position: absolute;
+    animation: move 2s infinite alternate; /* Add animation */
+}
+
+@keyframes move {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
 }
 
 #three-js-container {
@@ -29,20 +46,20 @@ body {
     position: absolute; /* Ensure the canvas takes up the entire container */
 }
 
+/* Section Styles */
 .projects-section,
 .about-section,
 .team-section {
-    padding: 10px 0;
-    margin: 20px 25px;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    background-color: #111111;
     padding: 30px;
+    margin: 20px 25px;
+    background-color: #111111;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .projects-section:hover,
@@ -52,25 +69,86 @@ body {
     background-color: #1c1c1c;
 }
 
+/* Section Headers */
 .projects-section h2,
 .about-section h2,
 .team-section h2 {
     font-size: 2rem;
     margin: 30px 10px 20px 20px;
     color: #ffffff;
-    font-family: 'Noto Serif', serif;
 }
 
+/* Section Paragraphs */
 .projects-section p,
 .about-section p {
     font-size: 1.2rem;
     line-height: 1.6;
     max-width: 800px;
     color: #ffffff;
-    font-family: 'Noto Serif', serif;
     margin: 10px;
 }
 
+/* Education Section */
+.education-section {
+    margin: 40px 0;
+}
+
+/* Module Grid */
+.module-grid {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.module-container {
+    flex: 1;
+    margin: 0 10px;
+}
+
+/* Module Styles */
+/* Add this to your Main.css file */
+
+/* Module Styles */
+.module {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1c1c1c;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, height 0.3s ease; /* Include height transition */
+    user-select: none;
+    padding: 10px; /* Add padding to ensure contents are spaced */
+    height: 60px; /* Set a fixed height for the collapsed state */
+    overflow: hidden; /* Hide overflow when collapsed */
+}
+
+.module.expanded {
+    height: 450px; /* Increased height when expanded (adjust as necessary) */
+    transition: background-color 0.3s ease, height 0.3s ease; /* Transition for height */
+}
+
+
+.module:hover {
+    background-color: #353535;
+    height: 80px;
+}
+
+.module-title {
+    font-size: 1.2rem;
+    color: #ffffff;
+    padding: 10px;
+}
+
+.module-description {
+    padding: 10px;
+    font-size: 1rem;
+    color: #ffffff;
+    max-width: 400px;
+}
+
+/* Team Section */
 .team-section {
     margin: 0px 25px;
     padding: 30px;
@@ -129,8 +207,8 @@ body {
     text-decoration-line: underline;
 }
 
+/* General Link Styles */
 a {
     font-size: 1rem;
     color: #ffffff;
-    font-family: 'Noto Serif', serif;
 }
