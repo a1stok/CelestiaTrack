@@ -11,19 +11,22 @@ body {
 }
 
 .solar-system-placeholder {
-    height: 400px;
+    height: 600px; /* Increased to allow the Three.js canvas more space */
+    width: 100%;
     margin-bottom: 40px;
-    background-color: #1a1a1a;
+    background-color: #000000; /* Solid black background for the space effect */
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid #333;
+    position: relative;
+    overflow: hidden;
 }
 
-.solar-system-placeholder::before {
-    /* content: 'Solar System Display Coming Soon'; */
-    font-size: 1.5rem;
-    color: #ffffff;
+#three-js-container {
+    width: 100%;
+    height: 100%;
+    position: absolute; /* Ensure the canvas takes up the entire container */
 }
 
 .projects-section,
@@ -76,13 +79,12 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-    .team-members {
-        display: flex;
-        justify-content: space-evenly;
-        flex-wrap: wrap;
-        gap: 25px; 
-
-    }
+.team-members {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 25px;
+}
 
 .team-member {
     text-align: center;
@@ -100,8 +102,6 @@ body {
     border-radius: 50%;
     object-fit: cover;
     transition: transform 0.3s ease;
-
-    
 }
 
 .team-member:hover .team-photo {

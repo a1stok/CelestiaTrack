@@ -1,42 +1,30 @@
+
 import React, { useEffect } from 'react';
-import '../styles/Main.css'; // Your Main.css file
+import '../styles/Main.css';
 import tm1 from '../images/tm1.jpg';
 import tm2 from '../images/tm2.jpg';
 import tm3 from '../images/tm3.jpg';
 import tm4 from '../images/tm4.png';
 import tm5 from '../images/tm5.png';
-// import earth from '../images/textures/earth.png'
 
-// import * as THREE from 'three'
-// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-
-import { initializeApp } from '../initializeThreeJSApp.js'
-
-// function App() {
-//   useEffect(() => {
-//     // Call the function that initializes the Three.js scene
-//     initializeApp();
-
-//     // Optional: Return a cleanup function here if needed
-//     return () => {
-//       // Clean up logic if needed
-//     };
-//   }, []); // Empty dependency array to run on mount
-
-//   return <div id="three-js-container"></div>;
-// }
+import { initializeApp } from '../initializeThreeJSApp.js';
 
 
 const Main = () => {
+  useEffect(() => {
+    const container = document.getElementById('three-js-container');
+    initializeApp(container);
+
+    return () => {
+      
+    };
+  }, []);
+
   return (
     <div className="main">
-      {/* Solar system placeholder */}
+      {/* Solar system display */}
       <section className="solar-system-placeholder">
-        {/* <App /> */}
-        {/* Placeholder for the solar system display */}
-        {/* <img src ={earth}></img> */}
-
-
+        <div id="three-js-container" style={{ width: '100%', height: '100%' }}></div>
       </section>
 
       {/* Challenge/Projects Section */}
@@ -56,7 +44,7 @@ const Main = () => {
       </section>
 
       {/* Team Section */}
-      <section id="team" className="team-section"> {/* Added id="team" for smooth scrolling */}
+      <section id="team" className="team-section">
         <h2>Meet Our Team</h2>
         <div className="team-members">
           <div className="team-member">
@@ -92,17 +80,7 @@ const Main = () => {
         </div>
       </section>
     </div>
-
-    
-
-
-
   );
-
-  
-}
-
-
+};
 
 export default Main;
-// export default App;
