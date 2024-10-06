@@ -11,19 +11,19 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 import { initializeApp } from '../initializeThreeJSApp.js'
 
-function App() {
-  useEffect(() => {
-    // Call the function that initializes the Three.js scene
-    initializeApp();
+// function App() {
+//   useEffect(() => {
+//     // Call the function that initializes the Three.js scene
+//     initializeApp();
 
-    // Optional: Return a cleanup function here if needed
-    return () => {
-      // Clean up logic if needed
-    };
-  }, []); // Empty dependency array to run on mount
+//     // Optional: Return a cleanup function here if needed
+//     return () => {
+//       // Clean up logic if needed
+//     };
+//   }, []); // Empty dependency array to run on mount
 
-  return <div id="three-js-container"></div>;
-}
+//   return <div id="three-js-container"></div>;
+// }
 
 
 const Main = () => {
@@ -31,7 +31,7 @@ const Main = () => {
     <div className="main">
       {/* Solar system placeholder */}
       <section className="solar-system-placeholder">
-        <App />
+        {/* <App /> */}
         {/* Placeholder for the solar system display */}
       
 
