@@ -1,6 +1,6 @@
 class Decoder:
-    def decode(self):
-        with open("results.txt", 'r') as f:
+    def extract_vector_data(self, name):
+        with open("./planetData/" + name + ".txt", 'r') as f:
             lines = f.readlines()
 
         # Initialize an empty array

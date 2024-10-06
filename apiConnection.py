@@ -30,7 +30,7 @@ class API_Connector:
         return r
 
     #Modifies the API request file, with the neccessary parameters
-    def setRequestInfo(COMMAND, START_TIME, STOP_TIME):
+    def setRequestInfo(COMMAND, START_TIME, STOP_TIME, STEP_SIZE):
         with open("my_input_file.txt", 'r') as f:
             lines = f.readlines()
 
@@ -42,6 +42,8 @@ class API_Connector:
                     f.write("START_TIME='" + START_TIME + "'\n") 
                 elif line.startswith("STOP_TIME"):
                     f.write("STOP_TIME='" + STOP_TIME + "'\n")
+                elif line.startswith("STEP_SIZE"):
+                    f.write("STEP_SIZE='" + STEP_SIZE + "'\n")
                 else:
                     f.write(line)
     def getVectors():

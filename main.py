@@ -28,9 +28,17 @@ class Main:
     NEPTUNE = 899
     PLUTO = 999
 
+    # 3 parameters sent into API code
+    date_i = ""
+    date_f = ""
+    step_size = ""
 
-    def __init__(self):
+    # Constructor
+    def __init__(self, date_i, date_f, step_size):
         self.objects = []
+        self.date_i = date_i
+        self.date_f = date_f
+        self.step_size = step_size
 
     # Method for debugging/testing purposes only
     def print2DArray(data):
@@ -56,17 +64,19 @@ class Main:
         print(5)
 
         for command in self.codes:
+            name = self.names[i]
+
             # Initializes input values for the API call 
-            API_Connector.setRequestInfo(str(command), curr_date, final_date)
+            API_Connector.setRequestInfo(str(command), self.date_i, self.date_f, self.step_size)
             # Requests ephemeris data from JPL website
-            data = API_Connector.getRequestInfo(self.names[i])
+            data = API_Connector.getRequestInfo(name)
             # API_Connector.getVectors()
-            decoder = Decoder()
+            # decoder = Decoder()
 
-            # Decodes data from results.txt
-            # data = decoder.decode()
+            # # Decodes data from results.txt
+            # extracted_raw_vector_data = decoder.extract_vector_data(name)
 
-            # self.objects.append(CelesObj(self.names[i], data))
+            # self.objects.append(CelesObj(name, extracted_raw_vector_data))
 
             # dataSave = DataSaver()
 
@@ -74,8 +84,7 @@ class Main:
 
             i += 1
 
-            # main = Main()
-            # Main.print2DArray(data)
+            # Main.print2DArray(extracted_raw_vector_data)
 
         
 
