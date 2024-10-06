@@ -21,7 +21,7 @@ body {
 }
 
 .solar-system-placeholder::before {
-    content: 'Solar System Display Coming Soon';
+    /* content: 'Solar System Display Coming Soon'; */
     font-size: 1.5rem;
     color: #ffffff;
 }

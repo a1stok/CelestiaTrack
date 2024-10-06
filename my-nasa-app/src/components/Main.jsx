@@ -13,7 +13,7 @@ const Main = () => {
       <section className="solar-system-placeholder">
         {/* Placeholder for the solar system display */}
       </section>
-
+{/* test */}
       {/* Challenge/Projects Section */}
       <section id="projects" className="projects-section">
         <h2>Challenge</h2>

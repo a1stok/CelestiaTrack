@@ -50,7 +50,7 @@ function initScene(data) {
 
   const mercury = getPlanet({ size: 0.1, distance: 1.25, img: 'mercury.png' });
   solarSystem.add(mercury);
-  solarSystem.add(createOrbit(10))
+  // solarSystem.add(createOrbit(10))
 
 
   const venus = getPlanet({ size: 0.2, distance: 1.65, img: 'venus.png' });

@@ -21,6 +21,7 @@
     "@tsparticles/engine": "^3.5.0",
     "@tsparticles/react": "^3.0.0",
     "http-server": "^14.1.1",
+    "live-server": "^1.2.2",
     "particles.js": "^2.0.0",
     "react-router-dom": "^6.26.2",
     "react-starfield": "^1.0.3",
