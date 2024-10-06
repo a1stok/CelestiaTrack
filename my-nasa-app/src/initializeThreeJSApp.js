@@ -12,7 +12,9 @@ export const initializeApp = (container) => {
   const w = container.clientWidth;
   const h = container.clientHeight;
   const camera = new THREE.PerspectiveCamera(75, w / h, 0.1, 1000);
-  camera.position.set(0, 2.5, 4);
+  camera.position.set(0, 2.5, 30);
+  // camera.position.z = 20=
+  camera.updateProjectionMatrix()
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(w, h);
 
@@ -70,6 +72,8 @@ function createOrbitLine(points) {
   return new THREE.Line(geometry, material);
 }
 
+const AU = 5
+
 function addOrbitsToScene() {
   // Mercury's orbit parameters
   const mercuryOrbitPoints = createOrbitEllipse(
@@ -105,6 +109,58 @@ function addOrbitsToScene() {
       100                     // Number of points for smooth orbit
   );
 
+    // mars's orbit parameters
+    const marsOrbitPoints = createOrbitEllipse(
+      21.497 * AU, // Semi-major axis in meters (1 AU)
+      0.01671123,            // Eccentricity
+      -0.00001531 * (Math.PI / 180), // Inclination in radians
+      0.0 * (Math.PI / 180),  // Longitude of ascending node in radians
+      102.93768193 * (Math.PI / 180), // Argument of periapsis in radians
+      100                     // Number of points for smooth orbit
+  );
+
+    // jupiter's orbit parameters
+    const jupiterOrbitPoints = createOrbitEllipse(
+      21.497 * AU, // Semi-major axis in meters (1 AU)
+      0.01671123,            // Eccentricity
+      -0.00001531 * (Math.PI / 180), // Inclination in radians
+      0.0 * (Math.PI / 180),  // Longitude of ascending node in radians
+      102.93768193 * (Math.PI / 180), // Argument of periapsis in radians
+      100                     // Number of points for smooth orbit
+  );
+
+    // saturn's orbit parameters
+    const saturnOrbitPoints = createOrbitEllipse(
+      21.497 * AU, // Semi-major axis in meters (1 AU)
+      0.01671123,            // Eccentricity
+      -0.00001531 * (Math.PI / 180), // Inclination in radians
+      0.0 * (Math.PI / 180),  // Longitude of ascending node in radians
+      102.93768193 * (Math.PI / 180), // Argument of periapsis in radians
+      100                     // Number of points for smooth orbit
+  );
+
+    // uranus's orbit parameters
+    const uranusOrbitPoints = createOrbitEllipse(
+      21.497 * AU, // Semi-major axis in meters (1 AU)
+      0.01671123,            // Eccentricity
+      -0.00001531 * (Math.PI / 180), // Inclination in radians
+      0.0 * (Math.PI / 180),  // Longitude of ascending node in radians
+      102.93768193 * (Math.PI / 180), // Argument of periapsis in radians
+      100                     // Number of points for smooth orbit
+  );
+
+    // neptune's orbit parameters
+    const neptuneOrbitPoints = createOrbitEllipse(
+      21.497 * AU, // Semi-major axis in meters (1 AU)
+      0.01671123,            // Eccentricity
+      -0.00001531 * (Math.PI / 180), // Inclination in radians
+      0.0 * (Math.PI / 180),  // Longitude of ascending node in radians
+      102.93768193 * (Math.PI / 180), // Argument of periapsis in radians
+      100                     // Number of points for smooth orbit
+  );
+
+
+
   const earthOrbit = createOrbitLine(earthOrbitPoints);
   scene.add(earthOrbit);
 }
@@ -126,6 +182,9 @@ addOrbitsToScene();
   controls.enableDamping = true;
   controls.dampingFactor = 0.03;
 
+  controls.minAzimuthAngle = 0;  // Prevent rotation to the left
+  controls.maxAzimuthAngle = 0;  // Prevent rotation to the right
+
   const solarSystem = new THREE.Group();
   solarSystem.userData.update = (t) => {
     solarSystem.children.forEach((child) => {
@@ -137,39 +196,78 @@ addOrbitsToScene();
   const sun = getSun();
   solarSystem.add(sun);
 
-  const mercury = getPlanet({ size: 0.1, distance: 1.25, img: 'mercury' });
+  const mercury = getPlanet({
+    semiMajorAxis: 8.32145129, // Semi-major axis in meters (1 AU)
+    eccentricity: 0.20563593, // Eccentricity
+    inclination: 7.00497902 * (Math.PI / 180), // Inclination in radians
+    longitudeOfAscendingNode: 0.0 * (Math.PI / 180), // Longitude of ascending node in radians
+    argumentOfPeriapsis: 77.45779628 * (Math.PI / 180), // Argument of periapsis in radians
+    children: [], // Number of points for smooth orbit
+    size: 1.1,
+    distance: 6,
+    img: "mercury",
+  });
   solarSystem.add(mercury);
 
-  const venus = getPlanet({ size: 0.2, distance: 1.65, img: 'venus' });
+
+  const venus = getPlanet({
+    semiMajorAxis: 15.5495061, // Semi-major axis in meters (1 AU)
+    eccentricity: 0.00677672,            // Eccentricity
+    inclination: 3.39467605 * (Math.PI / 180), // Inclination in radians
+    longitudeOfAscendingNode: 0.0 * (Math.PI / 180), // Longitude of ascending node in radians
+    argumentOfPeriapsis: 131.60246718 * (Math.PI / 180), // Argument of periapsis in radians
+    children: [], // Number of points for smooth orbit
+    size: 2.1,
+    distance: 6,
+    img: "venus",
+  });
   solarSystem.add(venus);
 
-  const moon = getPlanet({ size: 0.075, distance: 0.4, img: 'moon' });
-  const earth = getPlanet({ children: [moon], size: 0.225, distance: 2.0, img: 'earth' });
+  const earth = getPlanet({
+    semiMajorAxis: 21.497, // Semi-major axis in meters (1 AU)
+    eccentricity: 0.01671123,            // Eccentricity
+    inclination: -0.00001531 * (Math.PI / 180), // Inclination in radians
+    longitudeOfAscendingNode: 0.0 * (Math.PI / 180), // Longitude of ascending node in radians
+    argumentOfPeriapsis: 100 * (Math.PI / 180), // Argument of periapsis in radians
+    children: [], // Number of points for smooth orbit
+    size: 2.1,
+    distance: 6,
+    img: "earth",
+  });
   solarSystem.add(earth);
 
-  const mars = getPlanet({ size: 0.15, distance: 2.25, img: 'mars' });
-  solarSystem.add(mars);
+  
 
-  const jupiter = getPlanet({ size: 0.4, distance: 2.75, img: 'jupiter' });
-  solarSystem.add(jupiter);
+  // const venus = getPlanet({ size: 1.2, distance: 70, img: 'venus', planetName :'venus' });
+  // solarSystem.add(venus);
 
-  const sRingGeo = new THREE.TorusGeometry(0.6, 0.15, 8, 64);
-  const sRingMat = new THREE.MeshStandardMaterial();
-  const saturnRing = new THREE.Mesh(sRingGeo, sRingMat);
-  saturnRing.scale.z = 0.1;
-  saturnRing.rotation.x = Math.PI * 0.5;
-  const saturn = getPlanet({ children: [saturnRing], size: 0.35, distance: 3.25, img: 'saturn' });
-  solarSystem.add(saturn);
+  // const moon = getPlanet({ size: 0.075, distance: 0.4, img: 'moon' });
+  // const earth = getPlanet({ children: [moon], size: 2, distance: 95.0, img: 'earth' });
+  // solarSystem.add(earth);
 
-  const uRingGeo = new THREE.TorusGeometry(0.5, 0.05, 8, 64);
-  const uRingMat = new THREE.MeshStandardMaterial();
-  const uranusRing = new THREE.Mesh(uRingGeo, uRingMat);
-  uranusRing.scale.z = 0.1;
-  const uranus = getPlanet({ children: [uranusRing], size: 0.3, distance: 3.75, img: 'uranus' });
-  solarSystem.add(uranus);
+  // const mars = getPlanet({ size: 0.15, distance: 2.25, img: 'mars' });
+  // solarSystem.add(mars);
 
-  const neptune = getPlanet({ size: 0.3, distance: 4.25, img: 'neptune' });
-  solarSystem.add(neptune);
+  // const jupiter = getPlanet({ size: 0.4, distance: 2.75, img: 'jupiter' });
+  // solarSystem.add(jupiter);
+
+  // const sRingGeo = new THREE.TorusGeometry(0.6, 0.15, 8, 64);
+  // const sRingMat = new THREE.MeshStandardMaterial();
+  // const saturnRing = new THREE.Mesh(sRingGeo, sRingMat);
+  // saturnRing.scale.z = 0.1;
+  // saturnRing.rotation.x = Math.PI * 0.5;
+  // const saturn = getPlanet({ children: [saturnRing], size: 0.35, distance: 3.25, img: 'saturn' });
+  // solarSystem.add(saturn);
+
+  // const uRingGeo = new THREE.TorusGeometry(0.5, 0.05, 8, 64);
+  // const uRingMat = new THREE.MeshStandardMaterial();
+  // const uranusRing = new THREE.Mesh(uRingGeo, uRingMat);
+  // uranusRing.scale.z = 0.1;
+  // const uranus = getPlanet({ children: [uranusRing], size: 0.3, distance: 3.75, img: 'uranus' });
+  // solarSystem.add(uranus);
+
+  // const neptune = getPlanet({ size: 0.3, distance: 4.25, img: 'neptune' });
+  // solarSystem.add(neptune);
 
   // Add starfield
   const starfield = getStarfield({ numStars: 500, size: 0.35 });
