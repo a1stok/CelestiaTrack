@@ -5,7 +5,7 @@ import tm2 from '../images/tm2.jpg';
 import tm3 from '../images/tm3.jpg';
 import tm4 from '../images/tm4.png';
 import tm5 from '../images/tm5.png';
-import earth from '../images/textures/earth.png'
+// import earth from '../images/textures/earth.png'
 
 // import * as THREE from 'three'
 // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
@@ -34,7 +34,7 @@ const Main = () => {
       <section className="solar-system-placeholder">
         {/* <App /> */}
         {/* Placeholder for the solar system display */}
-        <img src ={earth}></img>
+        {/* <img src ={earth}></img> */}
 
 
       </section>
