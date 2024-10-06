@@ -5,8 +5,7 @@ import getSun from "../src/js/getSun.js";
 import getNebula from "../src/js/getNebula.js";
 import getStarfield from "../src/js/getStarfield.js";
 import getPlanet from "../src/js/getPlanet";
-// import getAsteroidBelt from "./src/getAsteroidBelt.js";
-// import getElipticLines from "../src/js/getElipticLines.js";
+
 
 
 
@@ -139,25 +138,25 @@ function initScene(data) {
   const sun = getSun();
   solarSystem.add(sun);
 
-  const mercury = getPlanet({ size: 0.1, distance: 1.25, img: 'mercury.png' });
+  const mercury = getPlanet({ size: 0.1, distance: 1.25, img: 'mercury' });
   solarSystem.add(mercury);
   // solarSystem.add(createOrbit(10))
 
 
-  const venus = getPlanet({ size: 0.2, distance: 1.65, img: 'venus.png' });
+  const venus = getPlanet({ size: 0.2, distance: 1.65, img: 'venus' });
   solarSystem.add(venus);
 
-  const moon = getPlanet({ size: 0.075, distance: 0.4, img: 'moon.png' });
-  const earth = getPlanet({ children: [moon], size: 0.225, distance: 2.0, img: 'earth.png' });
+  const moon = getPlanet({ size: 0.075, distance: 0.4, img: 'moon' });
+  const earth = getPlanet({ children: [moon], size: 0.225, distance: 2.0, img: 'earth' });
   solarSystem.add(earth);
 
-  const mars = getPlanet({ size: 0.15, distance: 2.25, img: 'mars.png' });
+  const mars = getPlanet({ size: 0.15, distance: 2.25, img: 'mars' });
   solarSystem.add(mars);
 
   // const asteroidBelt = getAsteroidBelt(objs);
   // solarSystem.add(asteroidBelt);
 
-  const jupiter = getPlanet({ size: 0.4, distance: 2.75, img: 'jupiter.png' });
+  const jupiter = getPlanet({ size: 0.4, distance: 2.75, img: 'jupiter' });
   solarSystem.add(jupiter);
 
   const sRingGeo = new THREE.TorusGeometry(0.6, 0.15, 8, 64);
@@ -165,17 +164,17 @@ function initScene(data) {
   const saturnRing = new THREE.Mesh(sRingGeo, sRingMat);
   saturnRing.scale.z = 0.1;
   saturnRing.rotation.x = Math.PI * 0.5;
-  const saturn = getPlanet({ children: [saturnRing], size: 0.35, distance: 3.25, img: 'saturn.png' });
+  const saturn = getPlanet({ children: [saturnRing], size: 0.35, distance: 3.25, img: 'saturn' });
   solarSystem.add(saturn);
 
   const uRingGeo = new THREE.TorusGeometry(0.5, 0.05, 8, 64);
   const uRingMat = new THREE.MeshStandardMaterial();
   const uranusRing = new THREE.Mesh(uRingGeo, uRingMat);
   uranusRing.scale.z = 0.1;
-  const uranus = getPlanet({ children: [uranusRing], size: 0.3, distance: 3.75, img: 'uranus.png' });
+  const uranus = getPlanet({ children: [uranusRing], size: 0.3, distance: 3.75, img: 'uranus' });
   solarSystem.add(uranus);
 
-  const neptune = getPlanet({ size: 0.3, distance: 4.25, img: 'neptune.png' });
+  const neptune = getPlanet({ size: 0.3, distance: 4.25, img: 'neptune' });
   solarSystem.add(neptune);
 
   // const elipticLines = getElipticLines();
