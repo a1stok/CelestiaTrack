@@ -6,7 +6,7 @@ import getNebula from "../src/js/getNebula.js";
 import getStarfield from "../src/js/getStarfield.js";
 import getPlanet from "../src/js/getPlanet";
 // import getAsteroidBelt from "./src/getAsteroidBelt.js";
-// import getElipticLines from "./src/getElipticLines.js";
+// import getElipticLines from "../src/js/getElipticLines.js";
 
 
 
@@ -30,6 +30,94 @@ function createOrbit(radius) {
   const orbit = new THREE.LineLoop(geometry, material);
   orbit.rotation.x = Math.PI / 2; // Rotate to lay flat on the XY plane
   return orbit;
+}
+
+//Create Orbit
+function createOrbitEllipse(semiMajorAxis, eccentricity, inclination, longitudeOfAscendingNode, argumentOfPeriapsis, numPoints = 100) {
+  const points = [];
+  const a = semiMajorAxis;  // Semi-major axis
+  const e = eccentricity;   // Eccentricity
+  const i = inclination;    // Inclination in radians
+  const Ω = longitudeOfAscendingNode; // Longitude of ascending node in radians
+  const ω = argumentOfPeriapsis; // Argument of periapsis in radians
+
+  for (let t = 0; t < numPoints; t++) {
+      const M = (t / (numPoints-1)) * 2 * Math.PI;  // Mean anomaly
+
+      // Solve Kepler's equation for eccentric anomaly
+      let E = M;
+      for (let j = 0; j < 10; j++) {
+          E = M + e * Math.sin(E);  // Iterative approximation
+      }
+
+      const trueAnomaly = 2 * Math.atan2(Math.sqrt(1 + e) * Math.sin(E / 2), Math.sqrt(1 - e) * Math.cos(E / 2));
+
+      // Distance from the focus (Sun) to the orbiting body
+      const r = a * (1 - e * Math.cos(E));
+
+      // Position in the plane of the orbit
+      const xOrbitalPlane = r * Math.cos(trueAnomaly);
+      const yOrbitalPlane = r * Math.sin(trueAnomaly);
+
+      // Apply rotation to account for the inclination, argument of periapsis, and longitude of ascending node
+      const x = xOrbitalPlane * (Math.cos(Ω) * Math.cos(ω) - Math.sin(Ω) * Math.sin(ω) * Math.cos(i)) -
+                yOrbitalPlane * (Math.sin(Ω) * Math.cos(ω) + Math.cos(Ω) * Math.sin(ω) * Math.cos(i));
+
+      const y = xOrbitalPlane * (Math.sin(Ω) * Math.cos(ω) + Math.cos(Ω) * Math.sin(ω) * Math.cos(i)) +
+                yOrbitalPlane * (Math.cos(Ω) * Math.cos(ω) - Math.sin(Ω) * Math.sin(ω) * Math.cos(i));
+
+      const z = xOrbitalPlane * Math.sin(ω) * Math.sin(i) + yOrbitalPlane * Math.cos(ω) * Math.sin(i);
+
+      // Add the point to the array
+      points.push(new THREE.Vector3(x, y, z));
+  }
+
+  return points;
+}
+
+function createOrbitLine(points) {
+  const geometry = new THREE.BufferGeometry().setFromPoints(points);
+  const material = new THREE.LineBasicMaterial({ color: 0xffffff });  // White orbit line
+  return new THREE.Line(geometry, material);
+}
+
+function addOrbitsToScene() {
+  // Mercury's orbit parameters
+  const mercuryOrbitPoints = createOrbitEllipse(
+      8.32145129, // Semi-major axis in meters (1 AU)
+      0.20563593,            // Eccentricity
+      7.00497902 * (Math.PI / 180), // Inclination in radians
+      0.0 * (Math.PI / 180),  // Longitude of ascending node in radians
+      77.45779628 * (Math.PI / 180), // Argument of periapsis in radians
+      252.25032350                     // Number of points for smooth orbit
+  );
+  const mercuryOrbit = createOrbitLine(mercuryOrbitPoints);
+  scene.add(mercuryOrbit);
+
+  // Venus's orbit parameters
+  const venusOrbitPoints = createOrbitEllipse(
+      15.5495061, // Semi-major axis in meters (1 AU)
+      0.00677672,            // Eccentricity
+      3.39467605 * (Math.PI / 180), // Inclination in radians
+      0.0 * (Math.PI / 180),  // Longitude of ascending node in radians
+      131.60246718 * (Math.PI / 180), // Argument of periapsis in radians
+      181.97909950                     // Number of points for smooth orbit
+  );
+  const venusOrbit = createOrbitLine(venusOrbitPoints);
+  scene.add(venusOrbit);
+
+  // Earth's orbit parameters
+  const earthOrbitPoints = createOrbitEllipse(
+      21.497, // Semi-major axis in meters (1 AU)
+      0.01671123,            // Eccentricity
+      -0.00001531 * (Math.PI / 180), // Inclination in radians
+      0.0 * (Math.PI / 180),  // Longitude of ascending node in radians
+      102.93768193 * (Math.PI / 180), // Argument of periapsis in radians
+      100                     // Number of points for smooth orbit
+  );
+
+  const earthOrbit = createOrbitLine(earthOrbitPoints);
+  scene.add(earthOrbit);
 }
 
 
@@ -92,6 +180,8 @@ function initScene(data) {
 
   // const elipticLines = getElipticLines();
   // solarSystem.add(elipticLines);
+
+  addOrbitsToScene();
 
   const starfield = getStarfield({ numStars: 500, size: 0.35 });
   scene.add(starfield);
@@ -322,3 +412,5 @@ window.addEventListener('resize', handleWindowResize, false);
 //   }
 //   window.addEventListener('resize', handleWindowResize, false);
 // }
+
+
