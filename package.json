@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@tsparticles/all": "^3.5.0",
+    "@tsparticles/engine": "^3.5.0",
+    "@tsparticles/react": "^3.0.0",
+    "particles.js": "^2.0.0",
+    "react-router-dom": "^6.26.2",
+    "react-starfield": "^1.0.3",
+    "react-stars-particles": "^1.0.2",
+    "react-tsparticles": "^2.12.2",
+    "tsparticles-slim": "^2.12.0"
+  }
+}

@@ -1,0 +1,51 @@
+.App {
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+body::-webkit-scrollbar {
+  display: none; 
+}
+.App-header {
+  background-color: #000000;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+h1 {
+  z-index: 1;
+}
+
+#root {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+#particles canvas {
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-link {
+  color: #61dafb;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  scroll-behavior: smooth;
+}
