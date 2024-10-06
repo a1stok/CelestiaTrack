@@ -1,0 +1,136 @@
+.main {
+    padding: 20px;
+    background-color: #000000;
+    color: #ffffff;
+    text-align: center;
+}
+
+body {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.solar-system-placeholder {
+    height: 400px;
+    margin-bottom: 40px;
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #333;
+}
+
+.solar-system-placeholder::before {
+    content: 'Solar System Display Coming Soon';
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+
+.projects-section,
+.about-section,
+.team-section {
+    padding: 10px 0;
+    margin: 20px 25px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    background-color: #111111;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.projects-section:hover,
+.about-section:hover,
+.team-section:hover {
+    transform: scale(1.025);
+    background-color: #1c1c1c;
+}
+
+.projects-section h2,
+.about-section h2,
+.team-section h2 {
+    font-size: 2rem;
+    margin: 30px 10px 20px 20px;
+    color: #ffffff;
+    font-family: 'Noto Serif', serif;
+}
+
+.projects-section p,
+.about-section p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 800px;
+    color: #ffffff;
+    font-family: 'Noto Serif', serif;
+    margin: 10px;
+}
+
+.team-section {
+    margin: 0px 25px;
+    padding: 30px;
+    background-color: #111111;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+    .team-members {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        gap: 25px; 
+
+    }
+
+.team-member {
+    text-align: center;
+    margin: 30px;
+    transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+    transform: scale(1.05);
+}
+
+.team-photo {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+
+    
+}
+
+.team-member:hover .team-photo {
+    transform: scale(1.2);
+}
+
+.team-name {
+    color: #f3f2f2;
+    margin-top: 15px;
+    transition: transform 0.3s ease;
+}
+
+.team-member:hover .team-name {
+    transform: scale(1.05);
+}
+
+.team-name a {
+    color: #f3f2f2;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.team-name a:hover {
+    color: #ffffff;
+    text-decoration-line: underline;
+}
+
+a {
+    font-size: 1rem;
+    color: #ffffff;
+    font-family: 'Noto Serif', serif;
+}
