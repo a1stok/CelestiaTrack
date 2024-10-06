@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../styles/Main.css'; // Your Main.css file
 import tm1 from '../images/tm1.jpg';
 import tm2 from '../images/tm2.jpg';
@@ -6,14 +6,38 @@ import tm3 from '../images/tm3.jpg';
 import tm4 from '../images/tm4.png';
 import tm5 from '../images/tm5.png';
 
+import * as THREE from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+
+import { initializeApp } from '../initializeThreeJSApp.js'
+
+function App() {
+  useEffect(() => {
+    // Call the function that initializes the Three.js scene
+    initializeApp();
+
+    // Optional: Return a cleanup function here if needed
+    return () => {
+      // Clean up logic if needed
+    };
+  }, []); // Empty dependency array to run on mount
+
+  return <div id="three-js-container"></div>;
+}
+
+
 const Main = () => {
   return (
     <div className="main">
       {/* Solar system placeholder */}
       <section className="solar-system-placeholder">
+        <App />
         {/* Placeholder for the solar system display */}
+      
+
+
       </section>
-{/* test */}
+
       {/* Challenge/Projects Section */}
       <section id="projects" className="projects-section">
         <h2>Challenge</h2>
@@ -67,7 +91,17 @@ const Main = () => {
         </div>
       </section>
     </div>
+
+    
+
+
+
   );
+
+  
 }
 
+
+
 export default Main;
+// export default App;
