@@ -11,7 +11,6 @@ class DateFunctions:
         current_day = current_date.day
 
         date = str(current_year) + "-" + str(current_month) + "-" + str(current_day)
-        print(date)
         return date
 
     def return_date_plus_delta_months(self,months):
@@ -26,5 +25,4 @@ class DateFunctions:
 
         # date = str(current_year + year) + "-" + str(month) + "-" + str(current_day)
         date = str(current_year) + "-" + str(current_month) + "-" + str(current_day + 1)
-        print(date)
         return date

@@ -35,12 +35,15 @@ mainClass = Main()
 # Param 4: List of, or individual command (each planet has its own command, listed above)
 # Param 5: Lis of, or individual name (capitalize name)
 # Param 6: If True, data will be formatted, if False, data will not be formatted
-mainClass.makeIndiv('2023-01-01','2025-04-19', '1 d', commands[1], names[1], True)
-
+# __________________________
+# Set individual planet data
+# mainClass.makeIndiv('2024-01-01','2024-04-19', '1 d', commands[1], names[1], True)
+# Set group of planets data
+mainClass.makeGroup('2024-01-01','2024-04-19', '1 d', commands, names, True)
 
 # Only call this method if arrays were passed into Param 4 & 5:
-# mainClass.getGroupInfo()
+mainClass.getGroupInfo()
 
 # Only call this method if values were passed into Param 4 & 5:
-mainClass.getIndivInfo()
+# mainClass.getIndivInfo()
 

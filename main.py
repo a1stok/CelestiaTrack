@@ -18,20 +18,20 @@ class Main:
     commands= []
     names = []
         
-    def makeGroup(self, date_i, date_f, step_size, commands, name, format):
+    def makeGroup(self, date_i, date_f, step_size, commands, names, format):
         self.date_i = date_i
         self.date_f = date_f
         self.step_size = step_size
         self.commands = commands
-        self.name = name
+        self.names = names
         self.format = format
 
-    def makeIndiv(self, date_i, date_f, step_size, command, names, format):
+    def makeIndiv(self, date_i, date_f, step_size, command, name, format):
         self.date_i = date_i
         self.date_f = date_f
         self.step_size = step_size
         self.command = command
-        self.names = names
+        self.name = name
         self.format = format
     
     # Method for debugging/testing purposes only
@@ -46,7 +46,6 @@ class Main:
         
     def getGroupInfo(self):
         counter = 0
-        print(self.commands)
         for code in self.commands:
             API_Connector.setRequestInfo(self.commands[counter], self.date_i, self.date_f, self.step_size)
             data = API_Connector.getRequestInfo(self.names[counter])
@@ -56,15 +55,12 @@ class Main:
                 decoder.formatData(self.names[counter])
 
             counter += 1
-            print(str(counter))
 
         # Makes sure request file isn't corrupted
         API_Connector.setRequestInfo(self.commands[0], self.date_i, self.date_f, self.step_size)
     
     def getIndivInfo(self):
         connector = API_Connector()
-
-        print(5)
 
         # Initializes input values for the API call 
         API_Connector.setRequestInfo(self.command, self.date_i, self.date_f, self.step_size)
